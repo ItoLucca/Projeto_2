@@ -12,7 +12,7 @@ ERROS criar(Tarefa tarefas[], int *pos){  // puxa as características inseridas 
     printf("Entre com uma prioridade entre 1 a 10: \n");  // pede ao usuário que insira uma prioridade para a tarefa.
     scanf("%d", &prioridade);
     if(prioridade > 0 && prioridade <= 10){
-        prioridade = &tarefas[*pos].prioridade;
+        tarefas[*pos].prioridade = prioridade;
         printf("prioridade salva com sucesso. \n");
     }
 
@@ -69,7 +69,7 @@ ERROS listar(Tarefa tarefas[], int *pos){  // puxa as características inseridas
     int categoria_escolhida;
 
     printf("Digite a categoria em questao para que seja listada a mesma: \n");
-    scanf("%s", &categoria_escolhida);
+    scanf("%s", categoria_escolhida);
 
     for(int i = 0; i < *pos; i++ ){
         if(strcmp(categoria_escolhida, tarefas[i].categoria) == 0){
