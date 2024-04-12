@@ -143,7 +143,7 @@ ERROS carregar(Tarefa tarefas[], int *pos){  // puxa as características inserid
 
 ERROS exportar(Tarefa tarefas[], int *pos){
     char nome_arquivo[TAMANHO_ARQUIVO];
-    FILE *arquivo_exportacao;
+    FILE *arquivo_exportacao = fopen(nome_arquivo, "wb");
 
     printf("Digite o nome do arquivo a ser exportado: \n");
     fgets(nome_arquivo, TAMANHO_ARQUIVO, stdin);
@@ -154,18 +154,22 @@ ERROS exportar(Tarefa tarefas[], int *pos){
         nome_arquivo[len_nome - 1] = "\0";
     }
 
-    arquivo_exportacao = fopen(nome_arquivo, "wb");
-
     if(arquivo_exportacao == NULL){
         printf("Erro ao exportar o arquivo.. \n");
     }
 
-    for(int i = 0 ; i < *pos ; i++){
-        printf(arquivo_exportacao, "Pos: %d\t", i+1); 
-        printf(arquivo_exportacao, "Prioridade: %d\t", tarefas[i].prioridade);
-        printf(arquivo_exportacao, "Categoria: %s\t", tarefas[i].categoria);  
-        printf(arquivo_exportacao,"Descricao: %s\n", tarefas[i].descricao); 
+    else{
+        for(int i = 0 ; i < *pos ; i++){
+            if(nome_arquivo == tarefas[i].arquivo){
+                printf(arquivo_exportacao, "Pos: %d\t", i+1); 
+                printf(arquivo_exportacao, "Prioridade: %d\t", tarefas[i].prioridade);
+                printf(arquivo_exportacao, "Categoria: %s\t", tarefas[i].categoria);  
+                printf(arquivo_exportacao,"Descricao: %s\n", tarefas[i].descricao); 
+            }
+        }
     }
+
+    fclose(arquivo_exportacao);
 }
 
 void clearBuffer(){  // função "void" que tem o intuito de limpar os buffers.
