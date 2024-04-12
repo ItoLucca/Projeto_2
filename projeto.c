@@ -66,7 +66,7 @@ ERROS deletar(Tarefa tarefas[], int *pos){  // puxa as características inserida
 }
 
 ERROS listar(Tarefa tarefas[], int *pos){  // puxa as características inseridas dentro da função "listar" dentro do typedef ERROS.
-    int categoria_escolhida;
+    char categoria_escolhida[TAMANHO_CATEGORIA];
 
     printf("Digite a categoria em questao para que seja listada a mesma: \n");
     scanf("%s", categoria_escolhida);
@@ -78,7 +78,7 @@ ERROS listar(Tarefa tarefas[], int *pos){  // puxa as características inseridas
             printf("Categoria: %s\t", tarefas[i].categoria);  
             printf("Descricao: %s\n", tarefas[i].descricao); 
         }
-        else if(categoria_escolhida == "\0"){
+        else if(strcmp(categoria_escolhida, "") == 0){
             printf("Pos: %d\t", i+1); 
             printf("Prioridade: %d\t", tarefas[i].prioridade);
             printf("Categoria: %s\t", tarefas[i].categoria);  
@@ -142,7 +142,7 @@ ERROS carregar(Tarefa tarefas[], int *pos){  // puxa as características inserid
 }
 
 ERROS exportar(Tarefa tarefas[], int *pos){
-    char nome_arquivo[200];
+    char nome_arquivo[TAMANHO_ARQUIVO];
     FILE *arquivo_exportacao;
 
     printf("Digite o nome do arquivo a ser exportado: \n");
@@ -154,8 +154,17 @@ ERROS exportar(Tarefa tarefas[], int *pos){
         nome_arquivo[len_nome - 1] = "\0";
     }
 
-    else if(arquivo_exportacao == NULL){
+    arquivo_exportacao = fopen(nome_arquivo, "wb");
+
+    if(arquivo_exportacao == NULL){
         printf("Erro ao exportar o arquivo.. \n");
+    }
+
+    for(int i = 0 ; i < *pos ; i++){
+        printf(arquivo_exportacao, "Pos: %d\t", i+1); 
+        printf(arquivo_exportacao, "Prioridade: %d\t", tarefas[i].prioridade);
+        printf(arquivo_exportacao, "Categoria: %s\t", tarefas[i].categoria);  
+        printf(arquivo_exportacao,"Descricao: %s\n", tarefas[i].descricao); 
     }
 }
 

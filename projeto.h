@@ -19,5 +19,6 @@ ERROS deletar(Tarefa tarefas[], int *pos);  // diz que a função 'deletar', que
 ERROS listar(Tarefa tarefas[], int *pos);  // diz que a função 'listar', que retorna ERROS, aceita um array de Tarefa e um ponteiro para int, ou seja, números inteiros como parâmetros. E que quando aplicado, a característica é colocado na ultima posição do array por conta da função int *pos.
 ERROS salvar(Tarefa tarefas[], int *pos);  // diz que a função 'salvar', que retorna ERROS, aceita um array de Tarefa e um ponteiro para int, ou seja, números inteiros como parâmetros. E que quando aplicado, a característica é colocado na ultima posição do array por conta da função int *pos.
 ERROS carregar(Tarefa tarefas[], int *pos);  // diz que a função 'carregar', que retorna ERROS, aceita um array de Tarefa e um ponteiro para int, ou seja, números inteiros como parâmetros. E que quando aplicado, a característica é colocado na ultima posição do array por conta da função int *pos.
+ERROS exportar(Tarefa tarefas[], int *pos);
 
 void clearBuffer();  // a função "void clearBuffer()" tem o intuito de "limpar" o buffer após o código ser efeuado.
